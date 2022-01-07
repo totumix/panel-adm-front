@@ -4,7 +4,7 @@ import { SnackBarService } from 'src/app/configs/services/snack-bar.service';
 import { BaseFormUserService } from '../../utils/base-form-user.service';
 import { IUser } from 'src/app/core/models/user'
 import { User } from 'src/app/core/models/user.model';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../utils/users.service';
 
 @Component({
   selector: 'app-add-user',

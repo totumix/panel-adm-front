@@ -8,9 +8,9 @@ import { BaseFormUserService } from './utils/base-form-user.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { EffectsModule } from '@ngrx/effects';
-import { UserStoreEffects } from './users.effects';
+import { UserStoreEffects } from './store/users.effects';
 import { StoreModule } from '@ngrx/store';
-import { usersReducer } from './users.reducer';
+import { usersReducer } from './store/users.reducer';
 
 const routes: Routes = [
   { path: "", component: UsersTableComponent },

@@ -9,11 +9,11 @@ import { MatSort } from '@angular/material/sort';
 import { SnackBarService } from 'src/app/configs/services/snack-bar.service';
 import { AppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
-import * as usersActions from '../../users.actions';
-import * as usersSelector from '../../users.selector';
+import * as usersActions from '../../store/users.actions';
+import * as usersSelector from '../../store/users.selector';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../utils/users.service';
 import { filter } from 'rxjs-compat/operator/filter';
 import { Observable, of } from 'rxjs';
 @Component({

@@ -1,15 +1,12 @@
 import { ActionReducerMap, ActionReducer, INIT, MetaReducer } from '@ngrx/store';
-import * as users from './components/main-dashboard/pages/users/users.reducer';
-import * as auth from './components/sso//auth.reducer';
+import * as users from './components/main-dashboard/pages/users/store/users.reducer';
 
 export interface AppState {
     usersStore: users.UsersState,
-    auth: auth.State
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
     usersStore: users.usersReducer,
-    auth: auth.authReducer
 }
 
 // export const hydrationMetaReducer = (
