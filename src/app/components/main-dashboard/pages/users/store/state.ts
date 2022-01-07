@@ -10,6 +10,10 @@ export interface UsersState {
     error?: any;
 }
 
+export interface AppState {
+    usersStore: UsersState
+}
+
 export const initialState: UsersState =
 {
     selectedUser: null,

@@ -28,8 +28,8 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     MaterialModule,
-    StoreModule.forFeature('userStore', usersReducer),
-    EffectsModule.forRoot([UserStoreEffects]),
+    StoreModule.forFeature('usersStore', usersReducer),
+    EffectsModule.forFeature([UserStoreEffects]),
     RouterModule.forChild(routes)
   ],
   providers: [

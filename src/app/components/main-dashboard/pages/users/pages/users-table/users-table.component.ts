@@ -12,7 +12,7 @@ import * as usersSelector from '../../store/users.selector';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
-import { UsersState } from '../../store/state';
+import { AppState } from '../../store/state';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -34,7 +34,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   constructor(
     private _backendService: BackendService,
     public dialog: MatDialog,
-    private store$: Store<UsersState>,
+    private store$: Store<AppState>,
     private router: Router
   ) { }
 
@@ -42,7 +42,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     this.store$.dispatch(usersActions.loadRequestAction())
     this.store$.select(usersSelector.getUsers).subscribe(
       users => {
-        console.log(users)
+        console.log(users , "USER")
         this.users$ = of(this.users);
       }
     );

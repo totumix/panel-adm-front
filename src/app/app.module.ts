@@ -14,7 +14,6 @@ import { SsoLayoutModule } from "./layouts/sso-layout/sso-layout.module";
 import { MainLayoutModule } from "./layouts/main-layout/main-layout.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BackendService } from './configs/backend.service';
-import { environment } from '../environments/environment'; // Angular CLI environment
 
 @NgModule({
   declarations: [AppComponent, MainLayoutComponent, SsoLayoutComponent],
@@ -23,12 +22,6 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
     BrowserAnimationsModule,
     MainLayoutModule,
     SsoLayoutModule,
-    StoreModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    }),
   ],
   providers: [
     BackendService
