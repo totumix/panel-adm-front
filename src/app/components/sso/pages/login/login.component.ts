@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
 import { BackendService } from 'src/app/configs/backend.service';
 import { ConstRoutesService } from 'src/app/configs/const-routes.service';
 import { IUser } from '../../../../core/models/user';
@@ -26,7 +25,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private _fb: FormBuilder,
     private _constRoutes: ConstRoutesService,
-    private store: Store<AppState>
   ) {
     this.loginForm = this._fb.group({
       email: ['', Validators.required],

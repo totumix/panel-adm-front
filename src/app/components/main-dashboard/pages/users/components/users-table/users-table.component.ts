@@ -7,7 +7,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/core/models/user.model';
 import { MatSort } from '@angular/material/sort';
 import { SnackBarService } from 'src/app/configs/services/snack-bar.service';
-import { AppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
 import * as usersActions from '../../store/users.actions';
 import * as usersSelector from '../../store/users.selector';
@@ -16,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from '../../utils/users.service';
 import { filter } from 'rxjs-compat/operator/filter';
 import { Observable, of } from 'rxjs';
+import { UsersState } from '../../store/users.reducer';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -37,7 +37,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   constructor(
     private _backendService: BackendService,
     public dialog: MatDialog,
-    private store$: Store<AppState>,
+    private store$: Store<UsersState>,
     private router: Router
   ) { }
 
