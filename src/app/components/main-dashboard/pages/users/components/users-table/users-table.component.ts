@@ -1,21 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BackendService } from '../../../../../../configs/backend.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/core/models/user.model';
 import { MatSort } from '@angular/material/sort';
-import { SnackBarService } from 'src/app/configs/services/snack-bar.service';
 import { Store } from '@ngrx/store';
 import * as usersActions from '../../store/users.actions';
 import * as usersSelector from '../../store/users.selector';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersService } from '../../utils/users.service';
-import { filter } from 'rxjs-compat/operator/filter';
 import { Observable, of } from 'rxjs';
-import { UsersState } from '../../store/users.reducer';
+import { UsersState } from '../../store/state';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',

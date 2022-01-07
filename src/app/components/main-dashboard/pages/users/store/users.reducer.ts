@@ -1,21 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { User } from 'src/app/core/models/user.model';
 import * as usersActions from './users.actions';
+import * as usersState from './state';
 
-export interface UsersState {
-    selectedUser: User,
-    users: User[],
-    isLoading?: boolean;
-    error?: any;
-}
+const initialState = usersState.initialState;
 
-export const initialState: UsersState =
-{
-    selectedUser: null,
-    users: [],
-    isLoading: false,
-    error: null
-};
 
 const _usersReducer = createReducer(
     initialState,
