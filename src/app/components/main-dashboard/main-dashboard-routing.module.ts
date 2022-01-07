@@ -1,22 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { RoutingPath } from "./../../configs/routing-path";
-//COMPONENTS
-import { HomeComponent } from './pages/home/home.component';
-import { UsersComponent } from './pages/users/users.component';
-import { PostsComponent } from './pages/posts/posts.component';
-import { StatisticsComponent } from './pages/statistics/statistics.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { CustomersComponent } from './pages/customers/customers.component';
-import { AddUserComponent } from './pages/users/pages/add-user/add-user.component';
-import { ProductsTableComponent } from './pages/products/components/products-table/products-table.component';
-import { AddProductComponent } from './pages/products/components/add-product/add-product.component';
-import { CustomersTableComponent } from './pages/customers/componets/customers-table/customers-table.component';
-import { AddCustomerComponent } from './pages/customers/componets/add-customer/add-customer.component';
-import { PostTableComponent } from './pages/posts/components/post-table/post-table.component';
-import { AddPostComponent } from './pages/posts/components/add-post/add-post.component';
-
-//GUARDS
 
 const routes: Routes = [
   {

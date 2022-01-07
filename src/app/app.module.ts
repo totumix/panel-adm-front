@@ -14,6 +14,8 @@ import { SsoLayoutModule } from "./layouts/sso-layout/sso-layout.module";
 import { MainLayoutModule } from "./layouts/main-layout/main-layout.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BackendService } from './configs/backend.service';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthInterceptorService } from "./configs/services/auth-interceptor.service";
 
 @NgModule({
   declarations: [AppComponent, MainLayoutComponent, SsoLayoutComponent],
@@ -24,7 +26,12 @@ import { BackendService } from './configs/backend.service';
     SsoLayoutModule,
   ],
   providers: [
-    BackendService
+    BackendService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

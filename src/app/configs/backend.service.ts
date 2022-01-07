@@ -10,27 +10,22 @@ export class BackendService {
   public identity;
   public token;
   public authenticationHeaders;
-  constructor(private _http: HttpClient) {
-    this.authenticationHeaders = new HttpHeaders().set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
-      .set('Authorization', this.getToken());
-  }
+  constructor(private _http: HttpClient) { }
 
   post(path, params, extraParams?): Observable<any> {
     this.url = (!extraParams ? `${environment.serverUrl}${path}` : `${environment.serverUrl}${path}?${extraParams}`);
-    return this._http.post(this.url, params, { headers: contentHeaders })
+    return this._http.post(this.url, params)
   }
 
   get(path, params?): Observable<any> {
     this.url = `${environment.serverUrl}${path}`;
-    return this._http.get(this.url , { headers: this.authenticationHeaders })
+    return this._http.get(this.url)
   }
 
   delete(path, id): Observable<any> {
     this.url = `${environment.serverUrl}${path}/${id}`;
     return this._http
-      .delete(this.url, { headers: this.authenticationHeaders });
-
+      .delete(this.url);
   }
 
   handleError(error: any) {
@@ -39,17 +34,10 @@ export class BackendService {
     return httpErrorResponse;
   }
 
-
   getIdentity() {
     let identity = JSON.parse(localStorage.getItem('identity'));
     (identity != 'undefined') ? this.identity = identity : this.identity = null;
     return this.identity;
-  }
-
-  getToken() {
-    let token = localStorage.getItem('token');
-    (token != 'undefined') ? this.token = token : this.token = null;
-    return this.token;
   }
 
   //SERVICIOS QUE NECESITAN TOKEN DE AUTENTICACION

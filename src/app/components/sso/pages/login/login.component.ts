@@ -47,9 +47,6 @@ export class LoginComponent implements OnInit {
         let { user } = await res;
         localStorage.setItem('identity', JSON.stringify(user))
         this.getToken();
-        this.router.navigate([
-          `${this._constRoutes.mainDashboardModuleUrl}/${this._constRoutes.mainDashboardHomeUrl}`
-        ]);
       },
       error => {
         this._backendService.handleError(error)
@@ -57,9 +54,12 @@ export class LoginComponent implements OnInit {
   }
 
   getToken() {
-    this._userService.login('login', this.user, true).subscribe(res => {
-      let { token } = res;
+    this._userService.login('login', this.user, true).subscribe(async res => {
+      let { token } = await res;
       localStorage.setItem('token', token)
+      this.router.navigate([
+        `${this._constRoutes.mainDashboardModuleUrl}/${this._constRoutes.mainDashboardHomeUrl}`
+      ]);
     },
       error => {
         this._backendService.handleError(error)
