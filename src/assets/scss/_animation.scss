@@ -1,0 +1,78 @@
+@keyframes down {
+    to {
+        transform: translateY(100%);
+    }
+}
+@keyframes up {
+    to {
+        transform: translateY(0);
+    }
+}
+
+//Animations Menu
+@keyframes showSubmenuActionsFixed {
+    to {
+        opacity: 1;
+        left: 110px;
+    }
+}
+@keyframes showSubmenuActions {
+    to {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+}
+@keyframes hideSubmenuActions {
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(70%);
+    }
+}
+@keyframes showSubmenuActionsMob {
+    to {
+        opacity: 1;
+        transform: translateY(-100%);
+    }
+}
+@keyframes hideSubmenuActionsMob {
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+}
+
+//Animations submenu profile
+@keyframes showProfile {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes hideProfile {
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+//Animations submenus
+@keyframes submenuHover {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+//Animations submenu responisve
+@keyframes slideSubmenu {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

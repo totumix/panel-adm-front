@@ -1,0 +1,62 @@
+<section id="body-pd">
+    <header class="header" id="header">
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+
+        <div class="header__img">
+            <!-- <img src="assets/img/perfil.jpg" alt=""> -->
+        </div>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a class="nav__logo">
+                    <i class='bx bx-layer nav__logo-icon'></i>
+                    <span class="nav__logo-name">Bedimcode</span>
+                </a>
+                <div class="nav__list">
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/home']" class="nav__link ">
+                        <i class='bx bx-home nav__icon'></i>
+                        <span class="nav__name">Inicio</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/articles']" class="nav__link ">
+                        <i class='bx bx-detail nav__icon'></i>
+                        <span class="nav__name">Articulos</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/categories']" class="nav__link ">
+                        <i class='bx bx-collection nav__icon'></i>
+                        <span class="nav__name">Categorías</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/customers']" class="nav__link ">
+                        <i class='bx bx-user-check nav__icon'></i>
+                        <span class="nav__name">Clientes</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/posts']" class="nav__link ">
+                        <i class='bx bx-spreadsheet nav__icon'></i>
+                        <span class="nav__name">Posts</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/products']" class="nav__link ">
+                        <i class='bx bx-store-alt nav__icon'></i>
+                        <span class="nav__name">Productos</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/statistics']" class="nav__link ">
+                        <i class='bx bx-line-chart nav__icon'></i>
+                        <span class="nav__name">Estadisticas</span>
+                    </a>
+                    <a routerLinkActive="active" [routerLink]="['/main-dashboard/users']" class="nav__link">
+                        <i class='bx bx-user nav__icon'></i>
+                        <span class="nav__name">Usuarios</span>
+                    </a>
+                </div>
+            </div>
+
+            <a (click)="logout()" class="nav__link">
+                <i class='bx bx-log-out nav__icon'></i>
+                <span class="nav__name">Log Out</span>
+            </a>
+        </nav>
+    </div>
+    <router-outlet></router-outlet>
+</section>

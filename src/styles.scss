@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import  "assets/scss/var-mixins",
+         "assets/scss/general",
+         "assets/scss/ssoLayout",
+         "assets/scss/mainLayout", 
+         "assets/scss/sharedModule",
+         'assets/scss/loader',
+         'assets/scss/animation',
+         'assets/scss/theme',
+         'assets/scss/table'
+         ;
+
+
+@font-face {
+  font-family: roboto-regular;
+  src: url(assets/fonts/Roboto/Roboto-Regular.ttf);
+}
+          
+*{
+  font-family: roboto-regular;
+}
+
+html { height: 100% }
+body { margin: 0;}
+
+
+.mat-simple-snackbar {
+  font-size: 1.2em;
+  color: white;
+}
+
+.snackbar-error {
+  background-color: red;
+}
+
+.snackbar-success {
+  background-color: green;
+}
+
+.snackbar-info {
+  background-color: blue;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

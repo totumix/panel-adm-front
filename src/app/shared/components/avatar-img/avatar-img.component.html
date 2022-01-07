@@ -1,0 +1,8 @@
+<div class="avatar" *ngIf="section == 'aside' else noAside">
+  <img [src]="photo | noimage" />
+</div>
+<ng-template #noAside>
+  <div class="avatar-mini">
+    <img [src]="photo | noimage" />
+  </div>
+</ng-template>

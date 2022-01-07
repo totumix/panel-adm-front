@@ -1,0 +1,27 @@
+<h1>Register</h1>
+<form [formGroup]="registerForm">
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Full name</mat-label>
+    <input formControlName="name" matInput>
+  </mat-form-field>
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Last name</mat-label>
+    <input formControlName="last_name" matInput>
+  </mat-form-field>
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input type="email" formControlName="email" matInput>
+  </mat-form-field>
+  <app-password-field [form]="registerForm"></app-password-field>
+</form>
+<button class="u-btn u-btn--line w-100"
+  [ngClass]="{'bg-gray': registerForm.invalid , 'u-btn--blue-dark': registerForm.valid }"
+  (click)="onSubmit(registerForm.value)" [disabled]="registerForm.invalid">
+  <span>
+    SIGN UP NOW
+  </span>
+</button>
+<div class="hr-sect">Sign in with</div>
+<div class="mg-y-10 text-center">
+  <span>Already have an account? <a class="link" [routerLink]="['/sso/login']">Sign In</a></span>
+</div>

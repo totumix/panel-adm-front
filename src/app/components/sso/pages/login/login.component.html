@@ -1,0 +1,28 @@
+<h1>Login</h1>
+<div class="mg-top-20" [formGroup]="loginForm">
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput>
+  </mat-form-field>
+  <div class="visibility">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input formControlName="password" [type]="showPassword ? 'text' : 'password'" matInput>
+      <i (click)="showPassword = !showPassword" class="material-icons">{{!showPassword ? 'visibility' :
+        'visibility_off'}}</i>
+    </mat-form-field>
+  </div>
+</div>
+<div class="text-center">
+  <span>Forgot your <a class="link" [routerLink]="['/sso/reset-password']">Password?</a></span>
+</div>
+<button type="submit" class="u-btn u-btn--line  w-100"
+  [ngClass]="{'bg-gray': loginForm.invalid , 'u-btn--blue-dark': loginForm.valid }" (click)="onSubmit(loginForm.value)"
+  [disabled]="loginForm.invalid">
+  <span>
+    SIGN IN
+  </span>
+</button>
+<div class="text-center">
+  <span>New user? <a class="link" [routerLink]="['/sso/signup-user']">Sign Up </a></span>
+</div>
