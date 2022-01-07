@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddUserComponent } from './components/add-user/add-user.component';
-import { UsersTableComponent } from './components/users-table/users-table.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users.component';
 import { BaseFormUserService } from './utils/base-form-user.service';
@@ -11,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserStoreEffects } from './store/users.effects';
 import { StoreModule } from '@ngrx/store';
 import { usersReducer } from './store/users.reducer';
+import { UsersTableComponent } from './pages/users-table/users-table.component';
 
 const routes: Routes = [
   { path: "", component: UsersTableComponent },
