@@ -29,3 +29,8 @@ export const getUserIsLoading = createSelector(
     UserFeature,
     (state: UsersState) => state.isLoading
 );
+
+export const getTotalUsers = createSelector(
+    UserFeature,
+    (state: UsersState) => state.total
+);

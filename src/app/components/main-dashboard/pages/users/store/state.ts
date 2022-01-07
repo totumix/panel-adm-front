@@ -7,6 +7,7 @@ export interface UsersState {
     selectedUser: User,
     users: User[],
     isLoading?: boolean;
+    total: number;
     error?: any;
 }
 
@@ -19,5 +20,6 @@ export const initialState: UsersState =
     selectedUser: null,
     users: [],
     isLoading: false,
+    total: null,
     error: null
 };

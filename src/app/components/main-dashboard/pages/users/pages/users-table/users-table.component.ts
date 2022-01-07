@@ -19,7 +19,6 @@ import { AppState } from '../../store/state';
   styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements OnInit, OnDestroy {
-  public error;
   public usersMetadata;
   public loading = false;
   displayedColumns: string[] = ['name', 'last_name', 'email', 'creation_date', 'state', 'actions'];
@@ -29,6 +28,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
   users$: Observable<User[]>;
   error$: Observable<any>;
+  total$: Observable<any>;
   isLoading$: Observable<boolean>;
   users: User[];
   constructor(
@@ -42,16 +42,16 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     this.store$.dispatch(usersActions.loadRequestAction())
     this.store$.select(usersSelector.getUsers).subscribe(
       users => {
-        console.log(users , "USER")
+        this.setDataTable(users);
         this.users$ = of(this.users);
       }
     );
     this.error$ = this.store$.select(usersSelector.getUserError);
     this.isLoading$ = this.store$.select(usersSelector.getUserIsLoading);
+    this.total$ = this.store$.select(usersSelector.getTotalUsers);
   }
 
-  setDataTable(data, metadata) {
-    this.usersMetadata = metadata;
+  setDataTable(data) {
     this.dataSource = data;
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
