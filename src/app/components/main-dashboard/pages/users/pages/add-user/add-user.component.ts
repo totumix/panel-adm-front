@@ -4,7 +4,13 @@ import { SnackBarService } from 'src/app/configs/services/snack-bar.service';
 import { BaseFormUserService } from '../../utils/base-form-user.service';
 import { IUser } from 'src/app/core/models/user'
 import { User } from 'src/app/core/models/user.model';
-import { UsersService } from '../../utils/users.service';
+import * as usersActions from '../../store/users.actions';
+import * as usersSelector from '../../store/users.selector'
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/state';
+import { Observable, skipWhile } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { filter } from 'rxjs-compat/operator/filter';
 
 @Component({
   selector: 'app-add-user',
@@ -13,30 +19,22 @@ import { UsersService } from '../../utils/users.service';
 })
 export class AddUserComponent implements OnInit {
   user: IUser
-
+  error$: Observable<any>;
+  total$: Observable<any>;
+  isLoading$: Observable<boolean>;
   constructor(
     public userForm: BaseFormUserService,
-    private _backendService: BackendService,
-    private snackbar: SnackBarService,
-    private _userService: UsersService
+    private store$: Store<AppState>,
   ) { }
 
   ngOnInit() {
-   // this._userService.userStoreReset();
+    // this._userService.userStoreReset();
   }
 
   sendForm() {
     const user = this.userForm.baseForm.value;
-    this._backendService.post('register', user).subscribe(
-      res => {
-        let { user, message } = res;
-        //this._userService.userDispatch(user);
-        this.snackbar.success(message);
-        this.userForm.resetForm(new User);
-      },
-      err => {
-        this._backendService.handleError(err)
-      })
+    this.store$.dispatch(usersActions.saveRequestAction(user));
+    this.error$ = this.store$.select(usersSelector.getUserError);
   }
 }
 

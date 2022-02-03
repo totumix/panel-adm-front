@@ -47,10 +47,10 @@ const _usersReducer = createReducer(
         isLoading: true
     })),
 
-    on(usersActions.saveSuccessAction, (state, { item }) => ({
+    on(usersActions.saveSuccessAction, (state, { user }) => ({
         ...state,
         isLoading: false,
-        selectedBook: item,
+        selectedUser: user,
         error: null
     })),
 

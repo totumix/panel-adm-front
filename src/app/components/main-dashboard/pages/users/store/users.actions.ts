@@ -22,7 +22,7 @@ export enum ActionTypes {
     DELETE_FAILURE = '[User] Delete Failure',
     DELETE_SUCCESS = '[User] Delete Success'
 }
-
+//1
 export const loadUserRequestAction = createAction(
     ActionTypes.LOAD_USER_REQUEST,
     props<{ id: number }>()
@@ -38,6 +38,7 @@ export const loadUserFailureAction = createAction(
     props<{ error: string }>()
 );
 
+//2
 export const loadRequestAction = createAction(
     ActionTypes.LOAD_REQUEST
 );
@@ -51,10 +52,10 @@ export const loadSuccessAction = createAction(
     ActionTypes.LOAD_SUCCESS,
     props<{ usersMetadata: any }>()
 );
-
+//3
 export const saveRequestAction = createAction(
     ActionTypes.SAVE_REQUEST,
-    props<{ item: User }>()
+    props<{ user: User }>()
 );
 
 export const saveFailureAction = createAction(
@@ -64,9 +65,9 @@ export const saveFailureAction = createAction(
 
 export const saveSuccessAction = createAction(
     ActionTypes.SAVE_SUCCESS,
-    props<{ item: User }>()
+    props<{ user: User }>()
 );
-
+//4
 
 export const updateRequestAction = createAction(
     ActionTypes.UPDATE_REQUEST,
@@ -82,7 +83,7 @@ export const updateSuccessAction = createAction(
     ActionTypes.UPDATE_SUCCESS,
     props<{ item: User }>()
 );
-
+//5
 export const deleteRequestAction = createAction(
     ActionTypes.DELETE_REQUEST,
     props<{ id: number }>()

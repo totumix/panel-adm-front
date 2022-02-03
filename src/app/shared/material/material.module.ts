@@ -20,7 +20,7 @@ const myModules = [
   MatTableModule,
   MatProgressSpinnerModule,
   MatDialogModule,
-  MatButtonModule
+  MatButtonModule,
 ];
 
 @NgModule({

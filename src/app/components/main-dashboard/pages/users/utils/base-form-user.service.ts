@@ -15,13 +15,13 @@ export class BaseFormUserService {
       email: ['', Validators.required],
       password: ['', Validators.required],
       role: ['', Validators.required],
-      cel: ['', Validators.required],
+      cel: [''],
       state: ['', Validators.required],
       photo: [''],
       facebook: [''],
       instagram: [''],
       twitter: [''],
-      enabled: [false, Validators.required],
+      enabled: [false],
     })
   }
 
