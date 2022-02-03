@@ -13,9 +13,12 @@ import { usersReducer } from './store/users.reducer';
 import { UsersTableComponent } from './pages/users-table/users-table.component';
 
 const routes: Routes = [
-  { path: "", component: UsersTableComponent },
-  { path: "add-user", component: AddUserComponent }
-
+  {
+    path: "", component: UsersComponent, children: [
+      { path: "", component: UsersTableComponent },
+      { path: "add-user", component: AddUserComponent }
+    ]
+  }
 ]
 
 @NgModule({

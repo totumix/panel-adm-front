@@ -53,6 +53,10 @@ export class RoutingPath {
             path: "categories",
             breadcrumb: "Categories"
           },
+          roles: {
+            path: "roles",
+            breadcrumb: "Roles"
+          },
         }
       }
     }

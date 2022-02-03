@@ -1,12 +1,10 @@
 import { createEntityAdapter, EntityAdapter, EntityState }
     from '@ngrx/entity';
 import { Rol } from 'src/app/core/models/rol.model';
-import { User } from 'src/app/core/models/user.model';
 
 
-export interface UsersState {
-    selectedUser: User,
-    users: User[],
+export interface RolesState {
+    selectedRol: Rol,
     roles: Rol[],
     isLoading?: boolean;
     total: number;
@@ -14,13 +12,12 @@ export interface UsersState {
 }
 
 export interface AppState {
-    usersStore: UsersState
+    rolesStore: RolesState
 }
 
-export const initialState: UsersState =
+export const initialState: RolesState =
 {
-    selectedUser: null,
-    users: [],
+    selectedRol: null,
     isLoading: false,
     roles: [],
     total: null,

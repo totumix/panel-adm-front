@@ -63,6 +63,13 @@ const routes: Routes = [
           breadcrumb: RoutingPath.appRouting.components.main_dashboard.pages.categories.breadcrumb
         },
         loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule)
+      },
+      {
+        path: RoutingPath.appRouting.components.main_dashboard.pages.roles.path,
+        data: {
+          breadcrumb: RoutingPath.appRouting.components.main_dashboard.pages.roles.breadcrumb
+        },
+        loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
       }
     ]
   },

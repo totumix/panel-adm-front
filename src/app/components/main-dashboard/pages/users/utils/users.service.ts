@@ -21,6 +21,10 @@ export class UsersService {
     return this._backendService.get('users/' + id);
   }
 
+  getRoles() {
+    return this._backendService.get('roles/');
+  }
+
   selectBook(user) {
     this.selectedUser.next(user)
   }

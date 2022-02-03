@@ -8,9 +8,8 @@ import * as usersActions from '../../store/users.actions';
 import * as usersSelector from '../../store/users.selector'
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/state';
-import { Observable, skipWhile } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { filter } from 'rxjs-compat/operator/filter';
+import { Observable } from 'rxjs';
+import { UsersService } from '../../utils/users.service';
 
 @Component({
   selector: 'app-add-user',
@@ -22,13 +21,23 @@ export class AddUserComponent implements OnInit {
   error$: Observable<any>;
   total$: Observable<any>;
   isLoading$: Observable<boolean>;
+  roles: Array<string>
   constructor(
     public userForm: BaseFormUserService,
     private store$: Store<AppState>,
+    private _userService: UsersService
   ) { }
 
   ngOnInit() {
-    // this._userService.userStoreReset();
+    this.dataInit();
+  }
+
+  dataInit = async () => {
+    await this._userService.getRoles().subscribe(res => {
+      let { roles } = res;
+      this.roles = roles;
+      console.log(this.roles, "entra")
+    })
   }
 
   sendForm() {

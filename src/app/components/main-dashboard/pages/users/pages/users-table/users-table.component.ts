@@ -13,6 +13,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { AppState } from '../../store/state';
+import { UsersService } from '../../utils/users.service';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -35,7 +36,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     private _backendService: BackendService,
     public dialog: MatDialog,
     private store$: Store<AppState>,
-    private router: Router
+    private router: Router,
   ) { }
 
   async ngOnInit() {
