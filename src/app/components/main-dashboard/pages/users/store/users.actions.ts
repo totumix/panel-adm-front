@@ -6,6 +6,10 @@ export enum ActionTypes {
     LOAD_USER_FAILURE = '[User] Load User Failure',
     LOAD_USER_SUCCESS = '[User] Load User Success',
 
+    LOAD_ROLES_REQUEST = '[User] Load Roles Request',
+    LOAD_ROLES_FAILURE = '[User] Load Roles Failure',
+    LOAD_ROLES_SUCCESS = '[User] Load Roles Success',
+
     LOAD_REQUEST = '[User] Load Request',
     LOAD_FAILURE = '[User] Load Failure',
     LOAD_SUCCESS = '[User] Load Success',
@@ -97,4 +101,18 @@ export const deleteFailureAction = createAction(
 export const deleteSuccessAction = createAction(
     ActionTypes.DELETE_SUCCESS,
     props<{ id: number }>()
+);
+//6
+export const loadRolesRequestAction = createAction(
+    ActionTypes.LOAD_ROLES_REQUEST
+);
+
+export const loadRolesFailureAction = createAction(
+    ActionTypes.LOAD_ROLES_FAILURE,
+    props<{ error: string }>()
+);
+
+export const loadRolesSuccessAction = createAction(
+    ActionTypes.LOAD_ROLES_SUCCESS,
+    props<{ rolesMetadata: any }>()
 );

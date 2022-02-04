@@ -42,6 +42,23 @@ const _usersReducer = createReducer(
         error: error
     })),
 
+    on(usersActions.loadRolesRequestAction, state => ({
+        ...state,
+        isLoading: true
+    })),
+
+    on(usersActions.loadRolesSuccessAction, (state, { rolesMetadata }) => ({
+        ...state,
+        isLoading: false,
+        roles: rolesMetadata.roles,
+    })),
+
+    on(usersActions.loadRolesFailureAction, (state, { error }) => ({
+        ...state,
+        isLoading: false,
+        error: error
+    })),
+
     on(usersActions.saveRequestAction, state => ({
         ...state,
         isLoading: true

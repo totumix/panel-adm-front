@@ -10,10 +10,16 @@ export const getUsers = createSelector(
     (state: UsersState) => state.users
 );
 
+export const getRoles = createSelector(
+    UserFeature,
+    (state: UsersState) => state.roles
+);
+
 export const getUser = createSelector(
     UserFeature,
     (state: UsersState, id: number) => state.users.filter(x => x.id === id)
 );
+
 
 export const getSelectedUser = createSelector(
     UserFeature,

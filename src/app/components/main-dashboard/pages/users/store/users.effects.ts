@@ -46,6 +46,20 @@ export class UserStoreEffects {
         })
     ))
 
+    getRoles$ = createEffect(() => this.actions$.pipe(
+        ofType(userActions.loadRolesRequestAction),
+        switchMap(action => {
+            return this.dataService.getRoles().pipe(
+                map((rolesMetadata: any) => {
+                    return userActions.loadRolesSuccessAction({ rolesMetadata })
+                }),
+                catchError(error => {
+                    return observableOf(userActions.loadRolesFailureAction({ error }))
+                })
+            )
+        })
+    ))
+
     saveRequestEffect$ = createEffect(() => this.actions$.pipe(
         ofType(userActions.saveRequestAction),
         switchMap(user => {

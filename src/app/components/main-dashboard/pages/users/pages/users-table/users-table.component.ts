@@ -13,7 +13,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { AppState } from '../../store/state';
-import { UsersService } from '../../utils/users.service';
+import { Rol } from 'src/app/core/models/rol.model';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -32,6 +32,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   total$: Observable<any>;
   isLoading$: Observable<boolean>;
   users: User[];
+  roles: Rol[];
   constructor(
     private _backendService: BackendService,
     public dialog: MatDialog,
@@ -41,11 +42,15 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.store$.dispatch(usersActions.loadRequestAction())
+    this.store$.dispatch(usersActions.loadRolesRequestAction())
     this.store$.select(usersSelector.getUsers).subscribe(
       users => {
         this.setDataTable(users);
         this.users$ = of(this.users);
       }
+    );
+    this.store$.select(usersSelector.getRoles).subscribe(
+      roles => this.roles = roles
     );
     this.error$ = this.store$.select(usersSelector.getUserError);
     this.isLoading$ = this.store$.select(usersSelector.getUserIsLoading);
@@ -73,7 +78,6 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
 
   deleteUser(user) {
-    console.log(user)
     this.dialog
       .open(ConfirmationDialogComponent, {
         data: {

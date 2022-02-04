@@ -20,9 +20,9 @@ export interface AppState {
 export const initialState: UsersState =
 {
     selectedUser: null,
-    users: [],
+    users: null,
     isLoading: false,
-    roles: [],
+    roles: null,
     total: null,
     error: null
 };
