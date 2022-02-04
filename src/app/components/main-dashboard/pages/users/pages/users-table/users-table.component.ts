@@ -87,16 +87,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
       .afterClosed()
       .subscribe(result => {
         if (result) {
-          this._backendService.delete('user', user._id).subscribe(
-            res => {
-              // this.store.select('users').subscribe(({ users }) => {
-              //   const index = users.indexOf({ ...user });
-              //   console.log(index, users)
-              //   // this._userService.usersDispatch(users)
-              // })
-            }, error => {
-              this._backendService.handleError(error)
-            })
+          this.store$.dispatch(usersActions.deleteRequestAction(user))
         }
       });
   }

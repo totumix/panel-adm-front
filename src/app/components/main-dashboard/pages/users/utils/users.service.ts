@@ -37,8 +37,8 @@ export class UsersService {
     return this._backendService.post('http://localhost/BookLoan.Catalog.API/api/Book/Edit/' + user.id, user);
   }
 
-  deleteUser(id: number) {
-    return this._backendService.delete('user/', id);
+  deleteUser(_id: string) {
+    return this._backendService.delete('user', _id);
   }
 
 }

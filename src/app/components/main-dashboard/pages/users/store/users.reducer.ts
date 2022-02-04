@@ -100,10 +100,10 @@ const _usersReducer = createReducer(
         isLoading: true
     })),
 
-    on(usersActions.deleteSuccessAction, (state, { id }) => ({
+    on(usersActions.deleteSuccessAction, (state, { _id }) => ({
         ...state,
         isLoading: false,
-        users: state.users.filter(x => x.id != id)
+        users: state.users.filter(x => x._id != _id)
     })),
 
     on(usersActions.deleteFailureAction, (state, { error }) => ({

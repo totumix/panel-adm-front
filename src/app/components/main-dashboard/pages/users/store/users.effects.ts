@@ -71,7 +71,7 @@ export class UserStoreEffects {
                     return userActions.saveSuccessAction({ user })
                 }),
                 catchError(error => {
-                    this._snackBar.open(error.error, 'Success', { duration: 5000 })
+                    this._snackBar.open(error.error, 'Failed', { duration: 5000 })
                     return observableOf(userActions.saveFailureAction({ error }))
                 })
             )
@@ -92,17 +92,20 @@ export class UserStoreEffects {
     // //     })
     // // ))
 
-    // deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
-    //     ofType(userActions.deleteRequestAction),
-    //     switchMap(action => {
-    //         return this.dataService.deleteUser(action.id).pipe(
-    //             map((item: any) => {
-    //                 return userActions.deleteSuccessAction({ id: action.id })
-    //             }),
-    //             catchError(error => {
-    //                 return observableOf(userActions.deleteFailureAction({ error }))
-    //             })
-    //         )
-    //     })
-    // ))
+    deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(userActions.deleteRequestAction),
+        switchMap(action => {
+            return this.dataService.deleteUser(action._id).pipe(
+                map((item: any) => {
+                    console.log(item)
+                    this._snackBar.open('The user has been deleted', 'Success', { duration: 5000 })
+                    return userActions.deleteSuccessAction({ _id: action._id })
+                }),
+                catchError(error => {
+                    this._snackBar.open(error.error, 'Failed', { duration: 5000 })
+                    return observableOf(userActions.deleteFailureAction({ error }))
+                })
+            )
+        })
+    ))
 }

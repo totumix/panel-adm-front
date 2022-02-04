@@ -90,7 +90,7 @@ export const updateSuccessAction = createAction(
 //5
 export const deleteRequestAction = createAction(
     ActionTypes.DELETE_REQUEST,
-    props<{ id: number }>()
+    props<{ _id: string }>()
 );
 
 export const deleteFailureAction = createAction(
@@ -100,7 +100,7 @@ export const deleteFailureAction = createAction(
 
 export const deleteSuccessAction = createAction(
     ActionTypes.DELETE_SUCCESS,
-    props<{ id: number }>()
+    props<{ _id: string }>()
 );
 //6
 export const loadRolesRequestAction = createAction(

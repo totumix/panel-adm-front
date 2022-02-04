@@ -1,5 +1,5 @@
 export class User {
-    id: number;
+    _id: string;
     name: string = '';
     last_name: string = '';
     creation_date: string = '';
