@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/state';
 import { Observable } from 'rxjs';
 import { UsersService } from '../../utils/users.service';
+import { Rol } from 'src/app/core/models/rol.model';
 
 @Component({
   selector: 'app-add-user',
@@ -21,7 +22,7 @@ export class AddUserComponent implements OnInit {
   error$: Observable<any>;
   total$: Observable<any>;
   isLoading$: Observable<boolean>;
-  roles: Array<string>
+  roles: Rol[]
   constructor(
     public userForm: BaseFormUserService,
     private store$: Store<AppState>,
@@ -33,11 +34,11 @@ export class AddUserComponent implements OnInit {
   }
 
   dataInit = async () => {
-    await this._userService.getRoles().subscribe(res => {
-      let { roles } = res;
-      this.roles = roles;
-      console.log(this.roles, "entra")
-    })
+    this.store$.select(usersSelector.getRoles).subscribe(
+      roles => roles ?
+        this.roles = roles :
+        this._userService.getRoles().subscribe(rolesMetadata => this.roles = rolesMetadata.roles)
+    );
   }
 
   sendForm() {
