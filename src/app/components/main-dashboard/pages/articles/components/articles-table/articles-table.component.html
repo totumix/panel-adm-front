@@ -7,7 +7,7 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row  end-lg end-mnd end-sm end-xs ">
-            <button class="u-btn u-btn--blue-dark ">Agregar articulos</button>
+            <button class="u-btn u-btn--blue-dark " [routerLink]="'article'">Agregar articulos</button>
         </div>
         <div class="row">
             <input type="search" value="" placeholder="Search" class="search-input">
@@ -35,7 +35,7 @@
                         <mat-cell *matCellDef="let row">
                             <mat-icon class="cursor-pointer ">add_circle_outline</mat-icon>
                             <mat-icon class="mg-15 cursor-pointer color-red">delete</mat-icon>
-                            <mat-icon class="cursor-pointer color-blue-medium">edit</mat-icon>
+                            <mat-icon class="cursor-pointer color-blue-medium" (click)="editArticle(row)">edit</mat-icon>
                         </mat-cell>
                     </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

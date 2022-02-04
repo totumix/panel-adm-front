@@ -59,6 +59,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   }
 
   setDataTable(data) {
+    console.log(data)
     this.dataSource = data;
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
