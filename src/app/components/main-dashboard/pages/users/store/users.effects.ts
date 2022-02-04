@@ -17,20 +17,20 @@ export class UserStoreEffects {
         public userForm: BaseFormUserService
     ) { }
 
-    // loadUserRequestEffect$ = createEffect(() => this.actions$.pipe(
-    //     ofType(userActions.loadUserRequestAction),
-    //     switchMap(action => {
-    //         const subject = "User";
-    //         return this.dataService.getUser(action.id).pipe(
-    //             map((user: any) => {
-    //                 return userActions.loadUserSuccessAction({ user })
-    //             }),
-    //             catchError((error: any) => {
-    //                 return observableOf(userActions.loadUserFailureAction({ error }))
-    //             })
-    //         )
-    //     })
-    // ))
+    loadUserRequestEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(userActions.loadUserRequestAction),
+        switchMap(action => {
+            return this.dataService.getUser(action._id).pipe(
+                map((user: any) => {
+                    this.userForm.pathFormData(user)
+                    return userActions.loadUserSuccessAction({ user })
+                }),
+                catchError((error: any) => {
+                    return observableOf(userActions.loadUserFailureAction({ error }))
+                })
+            )
+        })
+    ))
 
     getUsers$ = createEffect(() => this.actions$.pipe(
         ofType(userActions.loadRequestAction),
@@ -81,11 +81,14 @@ export class UserStoreEffects {
     updateRequestEffect$ = createEffect(() => this.actions$.pipe(
         ofType(userActions.updateRequestAction),
         switchMap(action => {
-            return this.dataService.updateUser(action.user).pipe(
+            console.log(action, "efect")
+            return this.dataService.updateUser(action).pipe(
                 map((user: any) => {
+                    this._snackBar.open('The user has been updated', 'Success', { duration: 5000 })
                     return userActions.updateSuccessAction({ user })
                 }),
                 catchError(error => {
+                    this._snackBar.open(error.error, 'Failed', { duration: 5000 })
                     return observableOf(userActions.updateFailureAction({ error }))
                 })
             )

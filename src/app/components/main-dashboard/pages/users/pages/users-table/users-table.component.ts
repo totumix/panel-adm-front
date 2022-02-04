@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BackendService } from '../../../../../../configs/backend.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -35,6 +35,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   roles: Rol[];
   constructor(
     private _backendService: BackendService,
+    public route: ActivatedRoute,
     public dialog: MatDialog,
     private store$: Store<AppState>,
     private router: Router,
@@ -74,7 +75,7 @@ export class UsersTableComponent implements OnInit, OnDestroy {
 
   editUser(user) {
     this.store$.dispatch(usersActions.setSelectedUserAction({ user }));
-    this.router.navigate(['/main-dashboard/users/user']);
+    this.router.navigate(['user', user._id], { relativeTo: this.route });
   }
 
 

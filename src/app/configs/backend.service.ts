@@ -28,6 +28,12 @@ export class BackendService {
       .delete(this.url);
   }
 
+
+  public update<T>(path: string, _id: string, entity: T): Observable<any> {
+    this.url = `${environment.serverUrl}${path}/${_id}`
+    return this._http.put<T[]>(this.url, entity, {});
+  }
+
   handleError(error: any) {
     console.error('An error occurred', error);
     var httpErrorResponse = <any>error;

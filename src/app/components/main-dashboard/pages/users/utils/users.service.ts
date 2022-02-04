@@ -17,15 +17,15 @@ export class UsersService {
     return this._backendService.get('users/');
   }
 
-  getUser(id: number) {
-    return this._backendService.get('users/' + id);
+  getUser(_id: string) {
+    return this._backendService.get('user/' + _id);
   }
 
   getRoles() {
     return this._backendService.get('roles/');
   }
 
-  selectBook(user) {
+  selectUser(user) {
     this.selectedUser.next(user)
   }
 
@@ -34,7 +34,8 @@ export class UsersService {
   }
 
   updateUser(user) {
-    return this._backendService.post('http://localhost/BookLoan.Catalog.API/api/Book/Edit/' + user.id, user);
+    console.log(user , user._id)
+    return this._backendService.update('user', user._id, user);
   }
 
   deleteUser(_id: string) {

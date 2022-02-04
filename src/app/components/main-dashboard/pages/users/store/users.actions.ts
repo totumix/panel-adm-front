@@ -4,6 +4,7 @@ import { User } from "src/app/core/models/user.model";
 export enum ActionTypes {
 
     SET_SELECTED_USER = '[User] Set Selected User',
+    UNSET_SELECTED_USER = '[User] Unset Selected User',
 
 
     LOAD_USER_REQUEST = '[User] Load User Request',
@@ -37,10 +38,14 @@ export const setSelectedUserAction = createAction(
     props<{ user: User }>()
 );
 
+export const unsetSelectedUserAction = createAction(
+    ActionTypes.UNSET_SELECTED_USER,
+);
+
 //1
 export const loadUserRequestAction = createAction(
     ActionTypes.LOAD_USER_REQUEST,
-    props<{ id: number }>()
+    props<{ _id: string }>()
 );
 
 export const loadUserSuccessAction = createAction(

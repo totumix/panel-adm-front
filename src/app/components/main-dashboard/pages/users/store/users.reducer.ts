@@ -7,7 +7,7 @@ const initialState = usersState.initialState;
 
 const _usersReducer = createReducer(
     initialState,
-    on(usersActions.loadUserRequestAction, (state, { id }) => ({
+    on(usersActions.loadUserRequestAction, (state, { _id }) => ({
         ...state,
         isLoading: true
     })),
@@ -86,6 +86,11 @@ const _usersReducer = createReducer(
         ...state,
         selectedUser: user,
         isLoading: true,
+    })),
+
+    on(usersActions.unsetSelectedUserAction, (state) => ({
+        ...state,
+        selectedUser: null,
     })),
 
     on(usersActions.updateSuccessAction, (state, { user }) => ({
