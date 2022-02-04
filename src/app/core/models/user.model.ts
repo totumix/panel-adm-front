@@ -7,10 +7,9 @@ export class User {
     cel: string = '';
     password: string = '';
     role: string = '';
-    state: string = '';
     photo: string = '';
     facebook: string = '';
     instagram: string = '';
     twitter: string = '';
-    habilitado: boolean = true;
+    enabled: boolean = true;
 }
