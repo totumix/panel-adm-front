@@ -2,6 +2,10 @@ import { createAction, props, Action } from "@ngrx/store";
 import { User } from "src/app/core/models/user.model";
 
 export enum ActionTypes {
+
+    SET_SELECTED_USER = '[User] Set Selected User',
+
+
     LOAD_USER_REQUEST = '[User] Load User Request',
     LOAD_USER_FAILURE = '[User] Load User Failure',
     LOAD_USER_SUCCESS = '[User] Load User Success',
@@ -26,6 +30,13 @@ export enum ActionTypes {
     DELETE_FAILURE = '[User] Delete Failure',
     DELETE_SUCCESS = '[User] Delete Success'
 }
+
+
+export const setSelectedUserAction = createAction(
+    ActionTypes.SET_SELECTED_USER,
+    props<{ user: User }>()
+);
+
 //1
 export const loadUserRequestAction = createAction(
     ActionTypes.LOAD_USER_REQUEST,
@@ -75,7 +86,7 @@ export const saveSuccessAction = createAction(
 
 export const updateRequestAction = createAction(
     ActionTypes.UPDATE_REQUEST,
-    props<{ item: User }>()
+    props<{ user: User }>()
 );
 
 export const updateFailureAction = createAction(
@@ -85,7 +96,7 @@ export const updateFailureAction = createAction(
 
 export const updateSuccessAction = createAction(
     ActionTypes.UPDATE_SUCCESS,
-    props<{ item: User }>()
+    props<{ user: User }>()
 );
 //5
 export const deleteRequestAction = createAction(

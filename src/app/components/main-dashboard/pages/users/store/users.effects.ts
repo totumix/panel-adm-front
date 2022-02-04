@@ -78,19 +78,19 @@ export class UserStoreEffects {
         })
     ))
 
-    // // updateRequestEffect$ = createEffect(() => this.actions$.pipe(
-    // //     ofType(userActions.updateRequestAction),
-    // //     switchMap(action => {
-    // //         return this.dataService.updateUser(action.item).pipe(
-    // //             map((item: any) => {
-    // //                 return userActions.updateSuccessAction({ item })
-    // //             }),
-    // //             catchError(error => {
-    // //                 return observableOf(userActions.updateFailureAction({ error }))
-    // //             })
-    // //         )
-    // //     })
-    // // ))
+    updateRequestEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(userActions.updateRequestAction),
+        switchMap(action => {
+            return this.dataService.updateUser(action.user).pipe(
+                map((user: any) => {
+                    return userActions.updateSuccessAction({ user })
+                }),
+                catchError(error => {
+                    return observableOf(userActions.updateFailureAction({ error }))
+                })
+            )
+        })
+    ))
 
     deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
         ofType(userActions.deleteRequestAction),

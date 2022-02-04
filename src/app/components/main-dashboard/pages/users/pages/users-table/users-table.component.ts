@@ -72,8 +72,9 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     this.router.navigate(['user-detail', id]);
   }
 
-  eventNewRecord(event) {
-    this.router.navigate(['user-new']);
+  editUser(user) {
+    this.store$.dispatch(usersActions.setSelectedUserAction({ user }));
+    this.router.navigate(['/main-dashboard/users/user']);
   }
 
 

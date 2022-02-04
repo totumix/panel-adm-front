@@ -77,15 +77,21 @@ const _usersReducer = createReducer(
         error: error
     })),
 
-    on(usersActions.updateRequestAction, state => ({
+    on(usersActions.updateRequestAction, (state) => ({
         ...state,
         isLoading: true
     })),
 
-    on(usersActions.updateSuccessAction, (state, { item }) => ({
+    on(usersActions.setSelectedUserAction, (state, { user }) => ({
         ...state,
+        selectedUser: user,
+        isLoading: true,
+    })),
+
+    on(usersActions.updateSuccessAction, (state, { user }) => ({
+        ...state,
+        selectedUser: user,
         isLoading: false,
-        selectedBook: item,
         error: null
     })),
 
