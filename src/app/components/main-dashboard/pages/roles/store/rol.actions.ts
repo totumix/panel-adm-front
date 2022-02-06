@@ -96,5 +96,5 @@ export const deleteFailureAction = createAction(
 
 export const deleteSuccessAction = createAction(
     ActionTypes.DELETE_SUCCESS,
-    props<{ id: number }>()
+    props<{ id: string }>()
 );

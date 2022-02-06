@@ -1,5 +1,5 @@
 export class Category {
-    _id: number;
+    _id: string;
     name: string = '';
     create_at: string = '';
     enabled: boolean = true;

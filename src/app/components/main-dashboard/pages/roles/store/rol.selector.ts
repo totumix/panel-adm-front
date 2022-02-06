@@ -12,7 +12,7 @@ export const getRoles = createSelector(
 
 export const getRol = createSelector(
     UserFeature,
-    (state: RolesState, id: number) => state.roles.filter(x => x._id === id)
+    (state: RolesState, id: string) => state.roles.filter(x => x._id === id)
 );
 
 export const getSelectedRol = createSelector(
