@@ -34,8 +34,10 @@
                         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                         <mat-cell *matCellDef="let row">
                             <mat-icon class="cursor-pointer ">add_circle_outline</mat-icon>
-                            <mat-icon class="mg-15 cursor-pointer color-red">delete</mat-icon>
-                            <mat-icon class="cursor-pointer color-blue-medium" (click)="editArticle(row)">edit</mat-icon>
+                            <mat-icon class="mg-15 cursor-pointer color-red" (click)="deleteArticle(row)">delete
+                            </mat-icon>
+                            <mat-icon class="cursor-pointer color-blue-medium" (click)="editArticle(row)">edit
+                            </mat-icon>
                         </mat-cell>
                     </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

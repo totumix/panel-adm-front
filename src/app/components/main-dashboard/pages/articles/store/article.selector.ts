@@ -17,7 +17,7 @@ export const getCategories = createSelector(
 
 export const getArticle = createSelector(
     ArticleFeature,
-    (state: ArticlesState, id: number) => state.articles.filter(x => x._id === id)
+    (state: ArticlesState, _id: string) => state.articles.filter(x => x._id === _id)
 );
 
 export const getSelectedArticle = createSelector(

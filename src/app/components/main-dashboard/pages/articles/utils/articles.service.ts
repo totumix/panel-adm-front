@@ -37,8 +37,8 @@ export class ArticlesService {
         return this._backendService.update('article', article._id, article);
     }
 
-    deleteUser(_id: string) {
-        return this._backendService.delete('user', _id);
+    deleteArticle(_id: string) {
+        return this._backendService.delete('article', _id);
     }
 
 }

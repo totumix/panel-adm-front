@@ -100,17 +100,19 @@ export class ArticlesStoreEffects {
         })
     ))
 
-    // deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
-    //     ofType(userActions.deleteRequestAction),
-    //     switchMap(action => {
-    //         return this.dataService.deleteUser(action.id).pipe(
-    //             map((item: any) => {
-    //                 return userActions.deleteSuccessAction({ id: action.id })
-    //             }),
-    //             catchError(error => {
-    //                 return observableOf(userActions.deleteFailureAction({ error }))
-    //             })
-    //         )
-    //     })
-    // ))
+    deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(articlesActions.deleteRequestAction),
+        switchMap(action => {
+            return this.dataService.deleteArticle(action._id).pipe(
+                map((item: any) => {
+                    this._snackBar.open('The user has been deleted', 'Success', { duration: 5000 })
+                    return articlesActions.deleteSuccessAction({ _id: action._id })
+                }),
+                catchError(error => {
+                    this._snackBar.open(error.error, 'Failed', { duration: 5000 })
+                    return observableOf(articlesActions.deleteFailureAction({ error }))
+                })
+            )
+        })
+    ))
 }

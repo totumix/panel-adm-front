@@ -1,5 +1,5 @@
 export class Article {
-    _id: number;
+    _id: string;
     name: string = '';
     photo: string = '';
     description: string = '';

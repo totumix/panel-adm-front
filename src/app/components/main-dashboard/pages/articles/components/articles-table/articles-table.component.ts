@@ -13,6 +13,8 @@ import * as articlesSelector from '../../store/article.selector';
 import { Observable, of } from 'rxjs';
 import { Article } from 'src/app/core/models/article.model';
 import { Category } from 'src/app/core/models/category.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 @Component({
   selector: 'app-articles-table',
   templateUrl: './articles-table.component.html',
@@ -34,6 +36,7 @@ export class ArticlesTableComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private store$: Store<AppState>,
+    public dialog: MatDialog
   ) { }
 
   async ngOnInit() {
@@ -61,6 +64,21 @@ export class ArticlesTableComponent implements OnInit {
   editArticle(article) {
     this.store$.dispatch(articlesActions.setSelectedArticleAction({ article }));
     this._router.navigate(['article', article._id], { relativeTo: this._route });
+  }
+
+  deleteArticle(article) {
+    this.dialog
+      .open(ConfirmationDialogComponent, {
+        data: {
+          contentText: `¿Seguro que quiere eliminar este articulo?`,
+        }
+      })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.store$.dispatch(articlesActions.deleteRequestAction(article))
+        }
+      });
   }
 
 }

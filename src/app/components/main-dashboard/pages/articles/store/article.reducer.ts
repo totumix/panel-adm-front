@@ -83,10 +83,10 @@ const _articlesReducer = createReducer(
         isLoading: true
     })),
 
-    on(articlesActions.deleteSuccessAction, (state, { id }) => ({
+    on(articlesActions.deleteSuccessAction, (state, { _id }) => ({
         ...state,
         isLoading: false,
-        articles: state.articles.filter(x => x._id != id)
+        articles: state.articles.filter(x => x._id != _id)
     })),
 
     on(articlesActions.deleteFailureAction, (state, { error }) => ({
