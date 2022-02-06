@@ -10,6 +10,11 @@ export const getArticles = createSelector(
     (state: ArticlesState) => state.articles
 );
 
+export const getCategories = createSelector(
+    ArticleFeature,
+    (state: ArticlesState) => state.categories
+);
+
 export const getArticle = createSelector(
     ArticleFeature,
     (state: ArticlesState, id: number) => state.articles.filter(x => x._id === id)

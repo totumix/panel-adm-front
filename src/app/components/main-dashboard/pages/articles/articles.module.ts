@@ -18,10 +18,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BaseFormArticleService } from './utils/base-form-article.service';
 
 const routes: Routes = [
-  { path: "", component: ArticlesTableComponent },
-  { path: "article", component: AddArticleComponent },
-  { path: "article/:_id", component: AddArticleComponent }
-
+  {
+    path: "", component: ArticlesComponent, children: [
+      { path: "", component: ArticlesTableComponent },
+      { path: "article", component: AddArticleComponent },
+      { path: "article/:_id", component: AddArticleComponent }
+    ]
+  }
 ]
 
 @NgModule({

@@ -7,7 +7,7 @@ const initialState = articlesState.initialState;
 
 const _articlesReducer = createReducer(
     initialState,
-    on(articlesActions.loadArticleRequestAction, (state, { id }) => ({
+    on(articlesActions.loadArticleRequestAction, (state, { _id }) => ({
         ...state,
         isLoading: true
     })),
@@ -65,10 +65,10 @@ const _articlesReducer = createReducer(
         isLoading: true
     })),
 
-    on(articlesActions.updateSuccessAction, (state, { item }) => ({
+    on(articlesActions.updateSuccessAction, (state, { article }) => ({
         ...state,
         isLoading: false,
-        selectedBook: item,
+        selectedArticle: article,
         error: null
     })),
 
@@ -93,7 +93,35 @@ const _articlesReducer = createReducer(
         ...state,
         isLoading: false,
         error: error
-    }))
+    })),
+
+    on(articlesActions.loadCategoriesRequestAction, state => ({
+        ...state,
+        isLoading: true
+    })),
+
+    on(articlesActions.loadCategoriesSuccessAction, (state, { categoriesMetadata }) => ({
+        ...state,
+        isLoading: false,
+        categories: categoriesMetadata.categories
+    })),
+
+    on(articlesActions.loadCategoriesFailureAction, (state, { error }) => ({
+        ...state,
+        isLoading: false,
+        error: error
+    })),
+
+    on(articlesActions.setSelectedArticleAction, (state, { article }) => ({
+        ...state,
+        selectedArticle: article,
+        isLoading: true,
+    })),
+
+    on(articlesActions.unsetSelectedArticleAction, (state) => ({
+        ...state,
+        selectedArticle: null,
+    })),
 );
 
 export function articlesReducer(state, action) {

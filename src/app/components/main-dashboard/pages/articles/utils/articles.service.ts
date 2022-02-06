@@ -17,25 +17,24 @@ export class ArticlesService {
         return this._backendService.get('articles/');
     }
 
-    getUser(_id: string) {
-        return this._backendService.get('user/' + _id);
+    getArticle(_id: string) {
+        return this._backendService.get('article/' + _id);
     }
 
-    getRoles() {
-        return this._backendService.get('roles/');
+    getCategories() {
+        return this._backendService.get('categories/');
     }
 
     selectUser(user) {
         this.selectedUser.next(user)
     }
 
-    saveUser(user) {
-        return this._backendService.post('register', user);
+    saveArticle(user) {
+        return this._backendService.post('article', user);
     }
 
-    updateUser(user) {
-        console.log(user, user._id)
-        return this._backendService.update('user', user._id, user);
+    updateArticle(article) {
+        return this._backendService.update('article', article._id, article);
     }
 
     deleteUser(_id: string) {

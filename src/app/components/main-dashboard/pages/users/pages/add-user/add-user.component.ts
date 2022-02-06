@@ -48,6 +48,7 @@ export class AddUserComponent implements OnInit {
         this.roles = roles :
         this._userService.getRoles().subscribe(rolesMetadata => this.roles = rolesMetadata.roles)
     );
+    console.log("this. roles", this.roles)
   }
 
   sendForm() {

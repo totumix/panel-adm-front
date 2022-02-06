@@ -6,8 +6,6 @@ import { SsoLayoutComponent } from "./layouts/sso-layout/sso-layout.component";
 import { MainLayoutComponent } from "./layouts/main-layout/main-layout.component";
 
 //NGRX
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 //MODULES
 import { SsoLayoutModule } from "./layouts/sso-layout/sso-layout.module";

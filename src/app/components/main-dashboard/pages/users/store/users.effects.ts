@@ -81,7 +81,6 @@ export class UserStoreEffects {
     updateRequestEffect$ = createEffect(() => this.actions$.pipe(
         ofType(userActions.updateRequestAction),
         switchMap(action => {
-            console.log(action, "efect")
             return this.dataService.updateUser(action).pipe(
                 map((user: any) => {
                     this._snackBar.open('The user has been updated', 'Success', { duration: 5000 })
