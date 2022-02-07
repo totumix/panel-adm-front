@@ -4,7 +4,7 @@ import { Rol } from 'src/app/core/models/rol.model';
 
 
 export interface RolesState {
-    selectedRol: Rol,
+    selectedRole: Rol,
     roles: Rol[],
     isLoading?: boolean;
     total: number;
@@ -17,7 +17,7 @@ export interface AppState {
 
 export const initialState: RolesState =
 {
-    selectedRol: null,
+    selectedRole: null,
     isLoading: false,
     roles: [],
     total: null,

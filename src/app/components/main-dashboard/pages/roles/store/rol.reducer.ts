@@ -1,99 +1,115 @@
 import { createReducer, on } from '@ngrx/store';
-import * as usersActions from './rol.actions';
-import * as usersState from './state';
+import * as rolesActions from './rol.actions';
+import * as rolesState from './state';
 
-const initialState = usersState.initialState;
+const initialState = rolesState.initialState;
 
 
 const _rolesReducer = createReducer(
     initialState,
-    on(usersActions.loadUserRequestAction, (state, { id }) => ({
+    on(rolesActions.loadRolRequestAction, (state, { id }) => ({
         ...state,
         isLoading: true
     })),
 
-    on(usersActions.loadUserSuccessAction, (state, { rol }) => ({
+    on(rolesActions.loadRolSuccessAction, (state, { role }) => ({
         ...state,
         isLoading: false,
-        selectedRol: rol
+        selectedRole: role
     })),
 
-    on(usersActions.loadUserFailureAction, (state, { error }) => ({
+    on(rolesActions.loadRolFailureAction, (state, { error }) => ({
         ...state,
         isLoading: false,
         error: error
     })),
 
-    on(usersActions.loadRequestAction, state => ({
+    on(rolesActions.loadRequestAction, state => ({
         ...state,
         isLoading: true
     })),
 
-    on(usersActions.loadSuccessAction, (state, { rolesMetadata }) => ({
+    on(rolesActions.loadSuccessAction, (state, { rolesMetadata }) => ({
         ...state,
         isLoading: false,
         roles: rolesMetadata.roles,
         total: rolesMetadata.total
     })),
 
-    on(usersActions.loadFailureAction, (state, { error }) => ({
+    on(rolesActions.loadFailureAction, (state, { error }) => ({
         ...state,
         isLoading: false,
         error: error
     })),
 
-    on(usersActions.saveRequestAction, state => ({
+    on(rolesActions.saveRequestAction, state => ({
         ...state,
         isLoading: true
     })),
 
-    on(usersActions.saveSuccessAction, (state, { rol }) => ({
+    on(rolesActions.saveSuccessAction, (state, { role }) => ({
         ...state,
         isLoading: false,
-        selectedRol: rol,
+        selectedRole: role,
+        roles: [...state.roles, role],
         error: null
     })),
 
-    on(usersActions.saveFailureAction, (state, { error }) => ({
+    on(rolesActions.saveFailureAction, (state, { error }) => ({
         ...state,
         isLoading: false,
         error: error
     })),
 
-    on(usersActions.updateRequestAction, state => ({
+    on(rolesActions.updateRequestAction, state => ({
         ...state,
         isLoading: true
     })),
 
-    on(usersActions.updateSuccessAction, (state, { item }) => ({
+    on(rolesActions.updateSuccessAction, (state, { role }) => ({
         ...state,
         isLoading: false,
-        selectedBook: item,
+        selectedRole: role,
+        roles: state.roles.map(
+            tempRole => tempRole._id === role._id ?
+                { ...role, name: role.name } : tempRole
+        ),
         error: null
     })),
 
-    on(usersActions.updateFailureAction, (state, { error }) => ({
+    on(rolesActions.updateFailureAction, (state, { error }) => ({
         ...state,
         isLoading: false,
         error: error
     })),
 
-    on(usersActions.deleteRequestAction, state => ({
+    on(rolesActions.deleteRequestAction, state => ({
         ...state,
         isLoading: true
     })),
 
-    on(usersActions.deleteSuccessAction, (state, { id }) => ({
+    on(rolesActions.deleteSuccessAction, (state, { _id }) => ({
         ...state,
         isLoading: false,
-        roles: state.roles.filter(x => x._id != id)
+        roles: state.roles.filter(x => x._id != _id)
     })),
 
-    on(usersActions.deleteFailureAction, (state, { error }) => ({
+    on(rolesActions.deleteFailureAction, (state, { error }) => ({
         ...state,
         isLoading: false,
         error: error
-    }))
+    })),
+
+    on(rolesActions.setSelectedRolAction, (state, { role }) => ({
+        ...state,
+        selectedRole: role,
+        isLoading: true,
+    })),
+
+    on(rolesActions.unsetSelectedRolAction, (state) => ({
+        ...state,
+        selectedRole: null,
+    })),
 );
 
 export function rolesReducer(state, action) {

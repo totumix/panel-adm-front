@@ -17,7 +17,7 @@ export const getRol = createSelector(
 
 export const getSelectedRol = createSelector(
     UserFeature,
-    (state: RolesState) => state.selectedRol
+    (state: RolesState) => state.selectedRole
 );
 
 export const getRolError = createSelector(

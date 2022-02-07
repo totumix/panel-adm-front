@@ -83,15 +83,12 @@ export class CategoryStoreEffects {
     deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
         ofType(categoriesActions.deleteRequestAction),
         switchMap(action => {
-            console.log(action, "entra efect delete")
             return this.dataService.deleteCategory(action._id).pipe(
                 map((item: any) => {
-                    console.log(item, 'item')
                     this._snackBar.open('The user has been deleted', 'Success', { duration: 5000 })
                     return categoriesActions.deleteSuccessAction({ _id: action._id })
                 }),
                 catchError(error => {
-                    console.log(error, "error")
                     this._snackBar.open(error.error, 'Failed', { duration: 5000 })
                     return observableOf(categoriesActions.deleteFailureAction({ error }))
                 })

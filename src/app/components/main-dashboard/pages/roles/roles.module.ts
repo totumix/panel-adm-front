@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { rolesReducer } from './store/rol.reducer';
 import { RolStoreEffects } from './store/rol.effects';
+import { AddRoleDialogComponent } from './components/add-role-dialog/add-role-dialog.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RolesComponent
+    RolesComponent,
+    RolesTableComponent,
+    AddRoleDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,9 @@ const routes: Routes = [
     StoreModule.forFeature('rolesStore', rolesReducer),
     EffectsModule.forFeature([RolStoreEffects]),
     RouterModule.forChild(routes)
+  ],
+  entryComponents: [
+    AddRoleDialogComponent
   ]
 })
 export class RolesModule { }

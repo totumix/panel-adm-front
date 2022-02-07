@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of as observableOf } from 'rxjs';
-import { catchError, map, tap, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import * as rolesActions from './rol.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { User } from 'src/app/core/models/user.model';
-import { UsersService } from '../../users/utils/users.service';
-import { BaseFormUserService } from '../../users/utils/base-form-user.service';
+import { BaseFormRolesService } from '../utils/base-form-roles.service';
+import { RolesService } from '../utils/roles.service';
+import { Rol } from 'src/app/core/models/rol.model';
 
 @Injectable()
 export class RolStoreEffects {
     constructor(
-        private dataService: UsersService,
+        private dataService: RolesService,
         private actions$: Actions,
         private _snackBar: MatSnackBar,
-        public userForm: BaseFormUserService
+        public rolForm: BaseFormRolesService
     ) { }
 
     // loadUserRequestEffect$ = createEffect(() => this.actions$.pipe(
@@ -48,13 +48,14 @@ export class RolStoreEffects {
 
     saveRequestEffect$ = createEffect(() => this.actions$.pipe(
         ofType(rolesActions.saveRequestAction),
-        switchMap(user => {
-            const subject = "User";
-            return this.dataService.saveUser(user).pipe(
-                map((rol: any) => {
-                    this.userForm.resetForm(new User)
-                    this._snackBar.open('The user has been created', 'Success', { duration: 5000 })
-                    return rolesActions.saveSuccessAction({ rol })
+        switchMap(rol => {
+            console.log(rol)
+            const subject = "Rol";
+            return this.dataService.saveRol(rol).pipe(
+                map((role: any) => {
+                    this.rolForm.resetForm(new Rol)
+                    this._snackBar.open('The role has been created', 'Success', { duration: 5000 })
+                    return rolesActions.saveSuccessAction({ role })
                 }),
                 catchError(error => {
                     this._snackBar.open(error.error, 'Success', { duration: 5000 })
@@ -64,31 +65,33 @@ export class RolStoreEffects {
         })
     ))
 
-    // // updateRequestEffect$ = createEffect(() => this.actions$.pipe(
-    // //     ofType(userActions.updateRequestAction),
-    // //     switchMap(action => {
-    // //         return this.dataService.updateUser(action.item).pipe(
-    // //             map((item: any) => {
-    // //                 return userActions.updateSuccessAction({ item })
-    // //             }),
-    // //             catchError(error => {
-    // //                 return observableOf(userActions.updateFailureAction({ error }))
-    // //             })
-    // //         )
-    // //     })
-    // // ))
+    updateRequestEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(rolesActions.updateRequestAction),
+        switchMap(role => {
+            return this.dataService.updateRol(role).pipe(
+                map((role: Rol) => {
+                    this._snackBar.open('The role has been updated', 'Success', { duration: 5000 })
+                    return rolesActions.updateSuccessAction({ role })
+                }),
+                catchError(error => {
+                    return observableOf(rolesActions.updateFailureAction({ error }))
+                })
+            )
+        })
+    ))
 
-    // deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
-    //     ofType(userActions.deleteRequestAction),
-    //     switchMap(action => {
-    //         return this.dataService.deleteUser(action.id).pipe(
-    //             map((item: any) => {
-    //                 return userActions.deleteSuccessAction({ id: action.id })
-    //             }),
-    //             catchError(error => {
-    //                 return observableOf(userActions.deleteFailureAction({ error }))
-    //             })
-    //         )
-    //     })
-    // ))
+    deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(rolesActions.deleteRequestAction),
+        switchMap(action => {
+            return this.dataService.deleteRol(action._id).pipe(
+                map((item: any) => {
+                    this._snackBar.open('The role has been deleted', 'Success', { duration: 5000 })
+                    return rolesActions.deleteSuccessAction({ _id: action._id })
+                }),
+                catchError(error => {
+                    return observableOf(rolesActions.deleteFailureAction({ error }))
+                })
+            )
+        })
+    ))
 }

@@ -2,6 +2,10 @@ import { createAction, props } from "@ngrx/store";
 import { Rol } from "src/app/core/models/rol.model";
 
 export enum ActionTypes {
+
+    SET_SELECTED_ROL = '[Rol] Set Selected Rol',
+    UNSET_SELECTED_ROL = '[Rol] Unset Selected Rol',
+
     LOAD_ROL_REQUEST = '[Rol] Load Rol Request',
     LOAD_ROL_FAILURE = '[Rol] Load Rol Failure',
     LOAD_ROL_SUCCESS = '[Rol] Load Rol Success',
@@ -22,18 +26,28 @@ export enum ActionTypes {
     DELETE_FAILURE = '[Rol] Delete Failure',
     DELETE_SUCCESS = '[Rol] Delete Success'
 }
+
+export const setSelectedRolAction = createAction(
+    ActionTypes.SET_SELECTED_ROL,
+    props<{ role: Rol }>()
+);
+
+export const unsetSelectedRolAction = createAction(
+    ActionTypes.UNSET_SELECTED_ROL,
+);
+
 //1
-export const loadUserRequestAction = createAction(
+export const loadRolRequestAction = createAction(
     ActionTypes.LOAD_ROL_REQUEST,
-    props<{ id: number }>()
+    props<{ id: string }>()
 );
 
-export const loadUserSuccessAction = createAction(
+export const loadRolSuccessAction = createAction(
     ActionTypes.LOAD_ROL_FAILURE,
-    props<{ rol: Rol }>()
+    props<{ role: Rol }>()
 );
 
-export const loadUserFailureAction = createAction(
+export const loadRolFailureAction = createAction(
     ActionTypes.LOAD_ROL_SUCCESS,
     props<{ error: string }>()
 );
@@ -55,7 +69,7 @@ export const loadSuccessAction = createAction(
 //3
 export const saveRequestAction = createAction(
     ActionTypes.SAVE_REQUEST,
-    props<{ rol: Rol }>()
+    props<{ role: Rol }>()
 );
 
 export const saveFailureAction = createAction(
@@ -65,13 +79,13 @@ export const saveFailureAction = createAction(
 
 export const saveSuccessAction = createAction(
     ActionTypes.SAVE_SUCCESS,
-    props<{ rol: Rol }>()
+    props<{ role: Rol }>()
 );
 //4
 
 export const updateRequestAction = createAction(
     ActionTypes.UPDATE_REQUEST,
-    props<{ item: Rol }>()
+    props<{ role: Rol }>()
 );
 
 export const updateFailureAction = createAction(
@@ -81,12 +95,12 @@ export const updateFailureAction = createAction(
 
 export const updateSuccessAction = createAction(
     ActionTypes.UPDATE_SUCCESS,
-    props<{ item: Rol }>()
+    props<{ role: Rol }>()
 );
 //5
 export const deleteRequestAction = createAction(
     ActionTypes.DELETE_REQUEST,
-    props<{ id: number }>()
+    props<{ _id: string }>()
 );
 
 export const deleteFailureAction = createAction(
@@ -96,5 +110,5 @@ export const deleteFailureAction = createAction(
 
 export const deleteSuccessAction = createAction(
     ActionTypes.DELETE_SUCCESS,
-    props<{ id: string }>()
+    props<{ _id: string }>()
 );

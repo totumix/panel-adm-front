@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Rol</h1>
+<div mat-dialog-content [formGroup]="_rolForm.baseForm">
+    <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Name </mat-label>
+        <input matInput formControlName="name" />
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="justify-content-center" style="gap : 5px;">
+    <button class="u-btn u-btn--cancel" (click)="this.dialogRef.close()">Cancel</button>
+    <button class="u-btn u-btn--blue-dark " (click)="ok()" cdkFocusInitial
+        [disabled]="_rolForm.baseForm.invalid">Accept</button>
+</div>
